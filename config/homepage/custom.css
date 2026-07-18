@@ -1,0 +1,16 @@
+/* xD00g cosmic backdrop for Mission Control */
+body {
+  background-color: #05060d !important;
+  background-image:
+    radial-gradient(ellipse 60% 45% at 15% 10%, rgba(132,204,22,0.13), transparent 60%),
+    radial-gradient(ellipse 55% 45% at 85% 15%, rgba(56,132,255,0.10), transparent 60%),
+    radial-gradient(ellipse 70% 55% at 50% 100%, rgba(139,92,246,0.12), transparent 60%),
+    radial-gradient(1px 1px at 20px 30px, #ffffff, transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 300px 200px, #ffffff, transparent),
+    radial-gradient(1px 1px at 220px 260px, rgba(255,255,255,0.6), transparent) !important;
+  background-size: auto, auto, auto, 400px 400px, 380px 380px, 420px 420px, 360px 360px !important;
+  background-attachment: fixed !important;
+}
+/* Lime brand accents */
+a:hover, .services-group a:hover { color: #a3e635 !important; }

@@ -1,0 +1,146 @@
+networks:
+  proxy:
+    name: proxy
+
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run --token ${CF_TUNNEL_TOKEN}
+    networks:
+      - proxy
+
+  traefik:
+    image: traefik:v3.6
+    container_name: traefik
+    restart: unless-stopped
+    command:
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.network=proxy"
+      - "--entrypoints.web.address=:80"
+      - "--api.dashboard=true"
+      - "--api.insecure=true"
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+    environment:
+      - DOCKER_API_VERSION=1.44
+
+  whoami:
+    image: traefik/whoami
+    container_name: whoami
+    restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`traffic.doogster.com`)"
+      - "traefik.http.routers.whoami.entrypoints=web"
+
+  news-feed:
+    image: doogs-news-feed:latest
+    container_name: news-feed
+    restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.news-feed.rule=Host(`news.doogster.com`)"
+      - "traefik.http.routers.news-feed.entrypoints=web"
+      - "traefik.http.services.news-feed.loadbalancer.server.port=5050"
+
+  linkding:
+    image: ghcr.io/sissbruecker/linkding:latest
+    container_name: linkding
+    restart: unless-stopped
+    mem_limit: 512m
+    environment:
+      LD_CSRF_TRUSTED_ORIGINS: "https://links.doogster.com"
+    volumes:
+      - /mnt/data/personal-apps/linkding:/etc/linkding/data
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.linkding.rule=Host(`links.doogster.com`)"
+      - "traefik.http.routers.linkding.entrypoints=web"
+      - "traefik.http.services.linkding.loadbalancer.server.port=9090"
+
+  lubelogger:
+    image: ghcr.io/hargata/lubelogger:latest
+    container_name: lubelogger
+    restart: unless-stopped
+    mem_limit: 512m
+    volumes:
+      - /mnt/data/personal-apps/lubelogger/data:/App/data
+      - /mnt/data/personal-apps/lubelogger/keys:/root/.aspnet/DataProtection-Keys
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.lubelogger.rule=Host(`cars.doogster.com`)"
+      - "traefik.http.routers.lubelogger.entrypoints=web"
+      - "traefik.http.services.lubelogger.loadbalancer.server.port=8080"
+
+  beszel:
+    image: henrygd/beszel:latest
+    container_name: beszel
+    restart: unless-stopped
+    mem_limit: 256m
+    environment:
+      APP_URL: "https://status.doogster.com"
+    ports:
+      - "127.0.0.1:8090:8090"
+    volumes:
+      - /mnt/data/personal-apps/beszel/data:/beszel_data
+      - /mnt/data/personal-apps/beszel/socket:/beszel_socket
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.beszel.rule=Host(`status.doogster.com`)"
+      - "traefik.http.routers.beszel.entrypoints=web"
+      - "traefik.http.services.beszel.loadbalancer.server.port=8090"
+
+  beszel-agent:
+    image: henrygd/beszel-agent:latest
+    container_name: beszel-agent
+    restart: unless-stopped
+    profiles:
+      - monitoring-agent
+    network_mode: host
+    mem_limit: 192m
+    volumes:
+      - /mnt/data/personal-apps/beszel/agent:/var/lib/beszel-agent
+      - /mnt/data/personal-apps/beszel/socket:/beszel_socket
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /mnt/data/personal-apps/beszel/azure-data:/extra-filesystems/azure-data:ro
+    environment:
+      LISTEN: "/beszel_socket/beszel.sock"
+      HUB_URL: "http://127.0.0.1:8090"
+      TOKEN: "${BESZEL_TOKEN:-}"
+      KEY: "${BESZEL_KEY:-}"
+
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    restart: unless-stopped
+    mem_limit: 256m
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: "home.doogster.com"
+    volumes:
+      - /mnt/data/personal-apps/homepage/config:/app/config
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.homepage.entrypoints=web"
+      - "traefik.http.routers.homepage.rule=Host(`home.doogster.com`)"
+      - "traefik.http.services.homepage.loadbalancer.server.port=3000"

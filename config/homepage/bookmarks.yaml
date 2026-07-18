@@ -1,0 +1,29 @@
+- Dev & MSP:
+    - GitHub:
+        - abbr: GH
+          href: https://github.com/aamostcc
+    - Cloudflare:
+        - abbr: CF
+          href: https://dash.cloudflare.com
+    - Tailscale:
+        - abbr: TS
+          href: https://login.tailscale.com/admin
+- Ground Control:
+    - Loudwire:
+        - abbr: LW
+          href: https://loudwire.com
+    - Reddit:
+        - abbr: RD
+          href: https://www.reddit.com
+    - Fox 5 Vegas:
+        - abbr: F5
+          href: https://www.fox5vegas.com
+    - 13 Action News:
+        - abbr: "13"
+          href: https://www.ktnv.com
+    - Windy:
+        - abbr: WX
+          href: https://www.windy.com
+    - AlertWildfire:
+        - abbr: AW
+          href: https://www.alertwildfire.org

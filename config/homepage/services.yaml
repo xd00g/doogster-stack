@@ -1,0 +1,22 @@
+- Homelab:
+    - Doog's News Feed:
+        href: https://news.doogster.com
+        siteMonitor: http://news-feed:5050
+        description: Science & interests aggregator
+        icon: mdi-newspaper-variant-outline
+    - Linkding:
+        href: https://links.doogster.com
+        siteMonitor: http://linkding:9090
+        description: Bookmarks
+        icon: linkding.png
+    - Beszel:
+        href: https://status.doogster.com
+        siteMonitor: http://beszel:8090
+        description: Server monitoring
+        icon: beszel.png
+- Personal Apps:
+    - LubeLogger:
+        href: https://cars.doogster.com
+        siteMonitor: http://lubelogger:8080
+        description: Vehicle maintenance & fuel log
+        icon: lubelogger.png

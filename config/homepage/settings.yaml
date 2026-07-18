@@ -1,0 +1,13 @@
+title: Doogster · Mission Control
+theme: dark
+color: slate
+headerStyle: clean
+target: _blank
+hideVersion: true
+layout:
+  Homelab:
+    style: row
+    columns: 4
+  Personal Apps:
+    style: row
+    columns: 4

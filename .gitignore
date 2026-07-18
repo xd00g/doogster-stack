@@ -1,0 +1,15 @@
+# Never commit real secrets
+.env
+**/.env
+!**/.env.example
+
+# Homepage runtime-generated stubs (regenerated on first start)
+config/homepage/docker.yaml
+config/homepage/kubernetes.yaml
+config/homepage/proxmox.yaml
+config/homepage/custom.js
+config/homepage/logs/
+
+# OS cruft
+.DS_Store
+Thumbs.db

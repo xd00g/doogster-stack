@@ -1,0 +1,17 @@
+- greeting:
+    text_size: xl
+    text: Doog's Mission Control 🚀
+- openmeteo:
+    label: Las Vegas
+    latitude: 36.1699
+    longitude: -115.1398
+    units: imperial
+    cache: 5
+- datetime:
+    text_size: l
+    format:
+      dateStyle: long
+      timeStyle: short
+- search:
+    provider: duckduckgo
+    target: _blank
