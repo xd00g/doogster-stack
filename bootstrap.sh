@@ -78,8 +78,8 @@ elif [ -d "$HOME/news-feed" ]; then
   docker build -t doogs-news-feed:latest "$HOME/news-feed"
 else
   warn "  doogs-news-feed:latest not found and ~/news-feed missing. Build it, e.g.:"
-  warn "    git clone https://github.com/aamostcc/doogs-news-feed.git ~/news-feed"
-  warn "    docker build -t doogs-news-feed:latest ~/news-feed   # requires a Dockerfile in that repo"
+  warn "    git clone https://github.com/aamostcc/doogs-news-feed.git ~/news-feed   # private repo: needs GitHub auth"
+  warn "    docker build -t doogs-news-feed:latest ~/news-feed   # repo includes a Dockerfile"
 fi
 
 # 8. Start the stack (only if it's safe to)

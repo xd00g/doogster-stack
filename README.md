@@ -61,7 +61,8 @@ Current subdomains: `traffic` (whoami test), `news`, `links`, `cars`, `status`, 
    ./bootstrap.sh
    ```
 3. Fill in `~/stack/.env` with the real tokens (from your password manager).
-4. Build the `news-feed` image (separate app repo — needs a Dockerfile):
+4. Build the `news-feed` image (separate app repo, which now includes its own Dockerfile —
+   note it's private, so the clone needs GitHub auth on the VM: deploy key / PAT / `gh auth`):
    ```bash
    git clone https://github.com/aamostcc/doogs-news-feed.git ~/news-feed
    docker build -t doogs-news-feed:latest ~/news-feed
