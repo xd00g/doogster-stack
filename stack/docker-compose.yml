@@ -160,6 +160,8 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.portainer.rule=Host(`portainer.doogster.com`)"
       - "traefik.http.routers.portainer.entrypoints=web"
+      - "traefik.http.routers.portainer.middlewares=portainer-xfp"
+      - "traefik.http.middlewares.portainer-xfp.headers.customRequestHeaders.X-Forwarded-Proto=https"
       - "traefik.http.services.portainer.loadbalancer.server.port=9000"
 
   landing:
