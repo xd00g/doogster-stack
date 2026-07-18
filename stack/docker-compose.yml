@@ -48,6 +48,13 @@ services:
     image: doogs-news-feed:latest
     container_name: news-feed
     restart: unless-stopped
+    environment:
+      WALLABAG_URL: "http://wallabag"
+      WALLABAG_HOST: "read.doogster.com"
+      WALLABAG_CLIENT_ID: "${WALLABAG_CLIENT_ID:-}"
+      WALLABAG_CLIENT_SECRET: "${WALLABAG_CLIENT_SECRET:-}"
+      WALLABAG_USERNAME: "${WALLABAG_USERNAME:-}"
+      WALLABAG_PASSWORD: "${WALLABAG_PASSWORD:-}"
     networks:
       - proxy
     labels:
@@ -56,22 +63,27 @@ services:
       - "traefik.http.routers.news-feed.entrypoints=web"
       - "traefik.http.services.news-feed.loadbalancer.server.port=5050"
 
-  linkding:
-    image: ghcr.io/sissbruecker/linkding:latest
-    container_name: linkding
+  wallabag:
+    image: wallabag/wallabag:latest
+    container_name: wallabag
     restart: unless-stopped
     mem_limit: 512m
     environment:
-      LD_CSRF_TRUSTED_ORIGINS: "https://links.doogster.com"
+      SYMFONY__ENV__DATABASE_DRIVER: "pdo_sqlite"
+      SYMFONY__ENV__DOMAIN_NAME: "https://read.doogster.com"
+      POPULATE_DATABASE: "True"
     volumes:
-      - /mnt/data/personal-apps/linkding:/etc/linkding/data
+      - /mnt/data/personal-apps/wallabag/data:/var/www/wallabag/data
+      - /mnt/data/personal-apps/wallabag/images:/var/www/wallabag/web/assets/images
     networks:
       - proxy
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.linkding.rule=Host(`links.doogster.com`)"
-      - "traefik.http.routers.linkding.entrypoints=web"
-      - "traefik.http.services.linkding.loadbalancer.server.port=9090"
+      - "traefik.http.routers.wallabag.rule=Host(`read.doogster.com`)"
+      - "traefik.http.routers.wallabag.entrypoints=web"
+      - "traefik.http.routers.wallabag.middlewares=wallabag-xfp"
+      - "traefik.http.middlewares.wallabag-xfp.headers.customRequestHeaders.X-Forwarded-Proto=https"
+      - "traefik.http.services.wallabag.loadbalancer.server.port=80"
 
   lubelogger:
     image: ghcr.io/hargata/lubelogger:latest

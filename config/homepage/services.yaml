@@ -4,11 +4,11 @@
         siteMonitor: http://news-feed:5050
         description: Science & interests aggregator
         icon: mdi-newspaper-variant-outline
-    - Linkding:
-        href: https://links.doogster.com
-        siteMonitor: http://linkding:9090
-        description: Bookmarks
-        icon: linkding.png
+    - Wallabag:
+        href: https://read.doogster.com
+        siteMonitor: http://wallabag:80
+        description: Read-later (star from the news feed)
+        icon: wallabag.png
     - Beszel:
         href: https://status.doogster.com
         siteMonitor: http://beszel:8090
