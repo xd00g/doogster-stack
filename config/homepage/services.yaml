@@ -14,9 +14,19 @@
         siteMonitor: http://beszel:8090
         description: Server monitoring
         icon: beszel.png
+    - Uptime Kuma:
+        href: https://kuma.doogster.com
+        siteMonitor: http://uptime-kuma:3001
+        description: Uptime monitoring & alerts
+        icon: uptime-kuma.png
 - Personal Apps:
     - LubeLogger:
         href: https://cars.doogster.com
         siteMonitor: http://lubelogger:8080
         description: Vehicle maintenance & fuel log
         icon: lubelogger.png
+    - Actual Budget:
+        href: https://benjis.doogster.com
+        siteMonitor: http://actual:5006
+        description: Budgeting
+        icon: actual-budget.png

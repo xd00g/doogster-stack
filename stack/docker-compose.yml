@@ -190,3 +190,33 @@ services:
       - "traefik.http.routers.landing.rule=Host(`doogster.com`) || Host(`www.doogster.com`)"
       - "traefik.http.routers.landing.entrypoints=web"
       - "traefik.http.services.landing.loadbalancer.server.port=80"
+
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    restart: unless-stopped
+    mem_limit: 256m
+    volumes:
+      - /mnt/data/personal-apps/uptime-kuma:/app/data
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kuma.rule=Host(`kuma.doogster.com`)"
+      - "traefik.http.routers.kuma.entrypoints=web"
+      - "traefik.http.services.kuma.loadbalancer.server.port=3001"
+
+  actual:
+    image: actualbudget/actual-server:latest
+    container_name: actual
+    restart: unless-stopped
+    mem_limit: 256m
+    volumes:
+      - /mnt/data/personal-apps/actual:/data
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.actual.rule=Host(`benjis.doogster.com`)"
+      - "traefik.http.routers.actual.entrypoints=web"
+      - "traefik.http.services.actual.loadbalancer.server.port=5006"
