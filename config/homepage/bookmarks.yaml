@@ -8,6 +8,10 @@
     - Tailscale:
         - abbr: TS
           href: https://login.tailscale.com/admin
+- Finance & Docs:
+    - Payday Planner:
+        - abbr: "PP"
+          href: https://docs.google.com/spreadsheets/d/1vxEL2zsRfXycwzpdcN6Gh-Cy3_or-MKy/edit
 - Ground Control:
     - Loudwire:
         - abbr: LW

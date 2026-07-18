@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Doogster</title>
+  <meta name="description" content="Doogster — homelab, space, sound, and the open road.">
+  <link rel="icon" href="logo.png">
+  <style>
+    :root{
+      --bg:#05060d; --text:#e8ecf4; --muted:#9aa4bd; --accent:#a3e635;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{height:100%}
+    body{
+      min-height:100%;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      display:flex;align-items:center;justify-content:center;
+      text-align:center;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+    }
+    /* Cosmic backdrop (shared xD00g theme) */
+    .starfield{position:fixed;inset:0;z-index:-1;pointer-events:none;
+      background:
+        radial-gradient(ellipse 60% 45% at 15% 12%, rgba(132,204,22,.13), transparent 60%),
+        radial-gradient(ellipse 55% 45% at 85% 18%, rgba(56,132,255,.10), transparent 60%),
+        radial-gradient(ellipse 70% 55% at 50% 102%, rgba(139,92,246,.13), transparent 60%),
+        radial-gradient(ellipse at 50% 40%, #0a0f1e 0%, #05060d 72%);}
+    .starfield::before,.starfield::after{content:"";position:absolute;inset:0;background-repeat:repeat}
+    .starfield::before{
+      background-image:
+        radial-gradient(1px 1px at 20px 30px,#fff,transparent),
+        radial-gradient(1px 1px at 130px 80px,rgba(255,255,255,.7),transparent),
+        radial-gradient(1px 1px at 210px 160px,#fff,transparent),
+        radial-gradient(1px 1px at 80px 220px,rgba(255,255,255,.7),transparent),
+        radial-gradient(1px 1px at 300px 260px,rgba(255,255,255,.85),transparent),
+        radial-gradient(1px 1px at 350px 120px,#fff,transparent);
+      background-size:380px 380px;animation:tw 5.5s ease-in-out infinite alternate}
+    .starfield::after{
+      background-image:
+        radial-gradient(1.6px 1.6px at 60px 90px,#fff,transparent),
+        radial-gradient(2px 2px at 240px 200px,rgba(190,230,255,.95),transparent),
+        radial-gradient(1.6px 1.6px at 420px 70px,#fff,transparent),
+        radial-gradient(1.6px 1.6px at 150px 340px,rgba(200,255,200,.9),transparent);
+      background-size:600px 600px;animation:tw 8s ease-in-out infinite alternate-reverse}
+    @keyframes tw{from{opacity:.55}to{opacity:1}}
+    @media (prefers-reduced-motion:reduce){.starfield::before,.starfield::after{animation:none}}
+
+    .wrap{max-width:640px;padding:2.5rem 1.5rem;display:flex;flex-direction:column;align-items:center;gap:1.1rem}
+    .logo{width:170px;height:170px;object-fit:contain;border-radius:20px;
+      filter:drop-shadow(0 0 26px rgba(163,230,53,.4));animation:float 7s ease-in-out infinite}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    @media (prefers-reduced-motion:reduce){.logo{animation:none}}
+
+    h1{font-size:clamp(2.4rem,9vw,3.6rem);letter-spacing:.02em;font-weight:800;
+      background:linear-gradient(90deg,#fff,#cbe89a);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .tagline{color:var(--accent);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.85rem}
+    .blurb{color:var(--muted);font-size:1.02rem;line-height:1.6;max-width:30rem}
+
+    .links{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin-top:.5rem}
+    .btn{display:inline-flex;align-items:center;gap:.45rem;text-decoration:none;font-weight:650;font-size:.95rem;
+      padding:.6rem 1.15rem;border-radius:999px;border:1px solid rgba(255,255,255,.12);
+      color:var(--text);background:rgba(255,255,255,.05);backdrop-filter:blur(8px);transition:all .15s}
+    .btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+    .btn.primary{color:#0a1400;background:var(--accent);border-color:transparent;box-shadow:0 0 18px rgba(163,230,53,.3)}
+    .btn.primary:hover{color:#0a1400;filter:brightness(1.06)}
+
+    footer{margin-top:1.6rem;color:var(--muted);font-size:.78rem;opacity:.8}
+  </style>
+</head>
+<body>
+  <div class="starfield" aria-hidden="true"></div>
+
+  <!-- Personalize the copy/links below to taste. -->
+  <main class="wrap">
+    <img class="logo" src="logo.png" alt="Doogster logo">
+    <h1>Doogster</h1>
+    <p class="tagline">Homelab · Space · Sound · The Open Road</p>
+    <p class="blurb">
+      A little corner of the internet running on green energy, self-hosted curiosity,
+      and questionable amounts of RSS. Mostly experiments — occasionally useful ones.
+    </p>
+    <nav class="links">
+      <a class="btn primary" href="https://news.doogster.com" target="_blank" rel="noopener">🛰️ News Feed</a>
+      <a class="btn" href="https://github.com/aamostcc" target="_blank" rel="noopener">💻 GitHub</a>
+    </nav>
+    <footer>© 2026 Doogster · launched from a home lab in the desert 🌵</footer>
+  </main>
+</body>
+</html>
