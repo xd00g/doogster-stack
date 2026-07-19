@@ -11,6 +11,8 @@ html { background: #050711; }
 
 body {
   min-height: 100vh;
+  position: relative;
+  isolation: isolate;
   background-color: #050711 !important;
   background-image:
     radial-gradient(circle at 12% 8%, rgba(163, 230, 53, 0.13), transparent 28%),
@@ -24,7 +26,7 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
   opacity: 0.58;
   background-image:
@@ -33,6 +35,14 @@ body::before {
     radial-gradient(1.5px 1.5px at 300px 200px, rgba(163,230,53,.9), transparent),
     radial-gradient(1px 1px at 220px 260px, rgba(125,211,252,.9), transparent);
   background-size: 360px 360px, 420px 420px, 520px 520px, 460px 460px;
+}
+
+/* Homepage paints its theme color on this full-page app shell. */
+#__next {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  background: transparent !important;
 }
 
 #page_container {
