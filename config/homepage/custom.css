@@ -1,16 +1,119 @@
-/* xD00g cosmic backdrop for Mission Control */
+/* Doogster Mission Control - cosmic glass theme */
+:root {
+  --doog-lime: #a3e635;
+  --doog-cyan: #38bdf8;
+  --doog-violet: #8b5cf6;
+  --doog-panel: rgba(15, 23, 42, 0.62);
+  --doog-border: rgba(148, 163, 184, 0.16);
+}
+
+html { background: #050711; }
+
 body {
-  background-color: #05060d !important;
+  min-height: 100vh;
+  background-color: #050711 !important;
   background-image:
-    radial-gradient(ellipse 60% 45% at 15% 10%, rgba(132,204,22,0.13), transparent 60%),
-    radial-gradient(ellipse 55% 45% at 85% 15%, rgba(56,132,255,0.10), transparent 60%),
-    radial-gradient(ellipse 70% 55% at 50% 100%, rgba(139,92,246,0.12), transparent 60%),
-    radial-gradient(1px 1px at 20px 30px, #ffffff, transparent),
-    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.7), transparent),
-    radial-gradient(1px 1px at 300px 200px, #ffffff, transparent),
-    radial-gradient(1px 1px at 220px 260px, rgba(255,255,255,0.6), transparent) !important;
-  background-size: auto, auto, auto, 400px 400px, 380px 380px, 420px 420px, 360px 360px !important;
+    radial-gradient(circle at 12% 8%, rgba(163, 230, 53, 0.13), transparent 28%),
+    radial-gradient(circle at 88% 12%, rgba(56, 189, 248, 0.13), transparent 30%),
+    radial-gradient(circle at 55% 92%, rgba(139, 92, 246, 0.16), transparent 36%),
+    linear-gradient(145deg, #050711 0%, #0b1020 50%, #080b18 100%) !important;
   background-attachment: fixed !important;
 }
-/* Lime brand accents */
-a:hover, .services-group a:hover { color: #a3e635 !important; }
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.58;
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, #fff, transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,.8), transparent),
+    radial-gradient(1.5px 1.5px at 300px 200px, rgba(163,230,53,.9), transparent),
+    radial-gradient(1px 1px at 220px 260px, rgba(125,211,252,.9), transparent);
+  background-size: 360px 360px, 420px 420px, 520px 520px, 460px 460px;
+}
+
+#page_container {
+  max-width: 1240px !important;
+  margin-inline: auto;
+}
+
+#information-widgets {
+  margin: 1.5rem 0 2rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--doog-border);
+  border-radius: 1.1rem;
+  background: rgba(9, 14, 29, 0.58);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(18px) saturate(135%);
+}
+
+.service-group-name,
+.bookmark-group-name {
+  color: #f8fafc !important;
+  letter-spacing: -0.025em;
+}
+
+.service-group-name::after,
+.bookmark-group-name::after {
+  content: "";
+  align-self: center;
+  width: 2.25rem;
+  height: 2px;
+  margin-left: .7rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--doog-lime), var(--doog-cyan));
+  box-shadow: 0 0 14px rgba(163, 230, 53, 0.35);
+}
+
+.service-card,
+.bookmark a {
+  border: 1px solid var(--doog-border) !important;
+  border-radius: .85rem !important;
+  background: var(--doog-panel) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22) !important;
+  backdrop-filter: blur(14px) saturate(130%);
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease, background .22s ease !important;
+}
+
+.service-card { min-height: 4.8rem; }
+
+.service-card:hover,
+.bookmark a:hover {
+  transform: translateY(-3px);
+  border-color: rgba(163, 230, 53, 0.42) !important;
+  background: rgba(22, 32, 53, 0.82) !important;
+  box-shadow: 0 15px 38px rgba(0, 0, 0, 0.32), 0 0 24px rgba(163, 230, 53, 0.08) !important;
+}
+
+.service-icon img { filter: drop-shadow(0 5px 8px rgba(0,0,0,.32)); }
+.service-title-text p { color: #94a3b8 !important; }
+.bookmark-list { gap: .1rem; }
+
+input[type="text"] {
+  border-color: rgba(148, 163, 184, 0.22) !important;
+  background: rgba(15, 23, 42, 0.72) !important;
+  backdrop-filter: blur(12px);
+}
+
+a:hover,
+.services-group a:hover { color: var(--doog-lime) !important; }
+
+@media (max-width: 768px) {
+  #page_container { padding-inline: .65rem !important; }
+  #information-widgets {
+    margin-top: .75rem;
+    padding: .9rem;
+    border-radius: .9rem;
+  }
+  .service-card { min-height: 4.5rem; }
+  .service-card:hover,
+  .bookmark a:hover { transform: translateY(-1px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card,
+  .bookmark a { transition: none !important; }
+}
