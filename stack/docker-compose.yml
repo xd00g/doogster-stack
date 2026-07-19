@@ -33,17 +33,6 @@ services:
     environment:
       - DOCKER_API_VERSION=1.44
 
-  whoami:
-    image: traefik/whoami
-    container_name: whoami
-    restart: unless-stopped
-    networks:
-      - proxy
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`traffic.doogster.com`)"
-      - "traefik.http.routers.whoami.entrypoints=web"
-
   news-feed:
     image: doogs-news-feed:latest
     container_name: news-feed

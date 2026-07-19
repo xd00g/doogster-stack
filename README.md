@@ -17,7 +17,7 @@ Config-as-code for the Doogster Docker host on an Azure Debian 13 VM. Web traffi
 
 ## Current applications
 
-Traefik, cloudflared, Doog's News Feed, Homepage, LubeLogger, Beszel, Portainer, Uptime Kuma, Wallabag, Actual Budget, the main landing page, the Oregon guide, and Whoami.
+Traefik, cloudflared, Doog's News Feed, Homepage, LubeLogger, Beszel, Portainer, Uptime Kuma, Wallabag, Actual Budget, the main landing page, and the Oregon guide.
 
 Persistent application data is stored below `/mnt/data/personal-apps`. Docker's data root is `/mnt/data/docker`.
 
