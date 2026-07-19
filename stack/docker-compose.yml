@@ -234,4 +234,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.oregon.rule=Host(`oregon.doogster.com`)"
       - "traefik.http.routers.oregon.entrypoints=web"
+      - "traefik.http.routers.oregon.middlewares=oregon-auth"
+      - "traefik.http.middlewares.oregon-auth.basicauth.users=guest:$$2y$$05$$xkM19BLYJBn0OAMqtFzqJey73HZLh3RSomIaf2BDikQk96DcZMREC"
       - "traefik.http.services.oregon.loadbalancer.server.port=80"
