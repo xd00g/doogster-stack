@@ -220,3 +220,18 @@ services:
       - "traefik.http.routers.actual.rule=Host(`benjis.doogster.com`)"
       - "traefik.http.routers.actual.entrypoints=web"
       - "traefik.http.services.actual.loadbalancer.server.port=5006"
+
+  oregon:
+    image: nginx:alpine
+    container_name: oregon
+    restart: unless-stopped
+    mem_limit: 32m
+    volumes:
+      - /mnt/data/personal-apps/oregon:/usr/share/nginx/html:ro
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.oregon.rule=Host(`oregon.doogster.com`)"
+      - "traefik.http.routers.oregon.entrypoints=web"
+      - "traefik.http.services.oregon.loadbalancer.server.port=80"
