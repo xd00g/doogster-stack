@@ -19,6 +19,11 @@
         siteMonitor: http://uptime-kuma:3001
         description: Uptime monitoring & alerts
         icon: uptime-kuma.png
+    - Portainer:
+        href: https://portainer.doogster.com
+        siteMonitor: http://portainer:9000
+        description: Docker container management
+        icon: portainer.png
 - Personal Apps:
     - LubeLogger:
         href: https://cars.doogster.com
@@ -30,3 +35,8 @@
         siteMonitor: http://actual:5006
         description: Budgeting
         icon: actual-budget.png
+    - Oregon Trip Guide:
+        href: https://oregon.doogster.com
+        siteMonitor: http://oregon:80
+        description: Oregon adventure itinerary
+        icon: mdi-map-marker-path
