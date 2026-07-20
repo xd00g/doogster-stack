@@ -15,21 +15,21 @@ if [ -z "$sync_id" ]; then
   exit 1
 fi
 
-printf 'Use a server password or a session token? [password/token]: '
+printf 'Authentication method: [P]assword or [T]oken (default: password): '
 read -r auth_type
 case "$auth_type" in
-  password)
+  ""|p|P|password|Password)
     read -r -s -p "Actual server password: " credential
     printf '\n'
     credential_name=ACTUAL_PASSWORD
     ;;
-  token)
+  t|T|token|Token)
     read -r -s -p "Actual session token: " credential
     printf '\n'
     credential_name=ACTUAL_SESSION_TOKEN
     ;;
   *)
-    echo "Enter either password or token." >&2
+    echo "Enter P for password or T for token." >&2
     exit 1
     ;;
 esac
@@ -69,4 +69,6 @@ chmod 0640 "$temp_file"
 mv "$temp_file" "$CONFIG_FILE"
 trap - EXIT
 
-echo "Saved Actual CLI credentials to $CONFIG_FILE for root and the Docker admin group."
+echo
+echo "SUCCESS: Actual CLI credentials are configured."
+echo "Saved securely at $CONFIG_FILE for root and the Docker admin group."
