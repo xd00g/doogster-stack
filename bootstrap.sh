@@ -41,6 +41,7 @@ sudo mkdir -p \
   "$DATA/personal-apps/portainer" \
   "$DATA/personal-apps/uptime-kuma" \
   "$DATA/personal-apps/actual" \
+  "$DATA/personal-apps/actual-cli/cache" \
   "$DATA/personal-apps/landing" \
   "$DATA/personal-apps/oregon"
 sudo chown -R "$USER":"$USER" "$DATA/personal-apps"
@@ -48,10 +49,14 @@ sudo chown -R "$USER":"$USER" "$DATA/personal-apps"
 say "Deploying Compose, Homepage, and static sites"
 mkdir -p "$STACK_DIR"
 cp "$REPO_DIR/stack/docker-compose.yml" "$STACK_DIR/docker-compose.yml"
+mkdir -p "$STACK_DIR/actual-cli"
+cp "$REPO_DIR/stack/actual-cli/Dockerfile" "$STACK_DIR/actual-cli/Dockerfile"
 cp "$REPO_DIR"/config/homepage/*.yaml "$HP_CONFIG"/
 cp "$REPO_DIR"/config/homepage/*.css "$HP_CONFIG"/
 cp -a "$REPO_DIR/sites/landing/." "$DATA/personal-apps/landing/"
 cp -a "$REPO_DIR/sites/oregon/." "$DATA/personal-apps/oregon/"
+sudo install -m 0755 "$REPO_DIR/system/actual-cli.sh" /usr/local/bin/actual-cli
+sudo install -m 0755 "$REPO_DIR/system/actual-cli-configure.sh" /usr/local/sbin/actual-cli-configure
 
 if [ ! -f "$STACK_DIR/.env" ]; then
   cp "$REPO_DIR/stack/.env.example" "$STACK_DIR/.env"

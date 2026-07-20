@@ -19,6 +19,8 @@ Config-as-code for the Doogster Docker host on an Azure Debian 13 VM. Web traffi
 
 Traefik, cloudflared, Doog's News Feed, Homepage, LubeLogger, Beszel, Portainer, Uptime Kuma, Wallabag, Actual Budget, the main landing page, and the Oregon guide.
 
+The optional `actual-cli` tools profile provides the official Actual Budget CLI on the internal Docker network without publishing a port. Configure its root-protected credentials with `sudo actual-cli-configure`, then run commands such as `actual-cli accounts list --format table`. The credential file at `/etc/actual-cli/actual.env` is never committed.
+
 Persistent application data is stored below `/mnt/data/personal-apps`. Docker's data root is `/mnt/data/docker`.
 
 ## Rebuild

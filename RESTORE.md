@@ -74,3 +74,6 @@ docker start wallabag
 sudo bash -c 'set -a; . /etc/restic/restic.env; set +a; restic check'
 docker compose -f ~/stack/docker-compose.yml --profile monitoring-agent ps
 ```
+## Restore Actual CLI access
+
+The Actual CLI image and wrapper are restored from this repository, but its credentials are intentionally not. After a rebuild, run `sudo actual-cli-configure` on the VM to recreate `/etc/actual-cli/actual.env`, then verify with `actual-cli budgets list`. Never commit that credential file.
